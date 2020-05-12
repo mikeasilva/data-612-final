@@ -2,3 +2,4 @@ data-612-final.code-workspace
 .vscode
 venv
 .ipynb_checkpoints
+bgg_ratings.csv
