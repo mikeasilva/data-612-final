@@ -1,7 +1,47 @@
 {% extends "layout.html" %}
+
+{% macro int(number) -%}
+{{ (number * 1) | int | abs}}
+{%- endmacro %}
+
+
 {% block content %}
   <div class="home">
-    <h1>A Python product</h1>
-    <p>This website was built with Python via the Flask framework.</p>
+    <h2>Top Recommendations</h2>
+    <div class="top_recommendations">
+      {% for game_id in top_recommendations %}
+      <div>
+        <a href="/details/{{game_id}}">
+          <b>{{attributes[game_id]["name"]}}</b><br/>
+          <img src="{{attributes[game_id]['thumbnail']}}"/>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% if has_history %}
+    <h2>You Recently Viewed</h2>
+    <div class="history">
+      {% for game_id in session["history"][0:5] %}
+      {% set game_id = int(game_id) | int %}
+      <div style="float: left;">
+        <a href="/details/{{game_id}}">
+          <b>{{attributes[game_id]["name"]}}</b><br/>
+          <img src="{{attributes[game_id]['thumbnail']}}"/>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.top_recommendations').slick({
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          autoplay: true,
+          autoplaySpeed: 5000,
+        });
+      });
+    </script>
   </div>
 {% endblock %}

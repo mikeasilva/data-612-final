@@ -2,6 +2,29 @@
 {% block content %}
   <div class="details">
     <h1>{{game.name}}</h1>
-    <p>{{game.details}}</p>
+    <p><img src="{{game.thumbnail}}" align="left"/> {{game.description | safe}}</p>
   </div>
+  <section class="you_might_also_like">
+    <h2>You might also like...</h2>
+    <div class="recommendations">
+    {% for recommendation in recommendations %}
+      <div class="recommendation">
+        <a href="/details/{{recommendation}}">
+          {{attributes[recommendation]['name']}}<br/>
+          <img src="{{attributes[recommendation]['thumbnail']}}" align="left"/>
+        </a>
+      </div>
+    {% endfor %}
+    </div>
+  </section>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.recommendations').slick({
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+      });
+    });
+  </script>
 {% endblock %}
