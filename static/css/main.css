@@ -1,43 +1,294 @@
-header {
-    margin: 0;
+html {
+    color: #222;
+    font-size: 1em;
+    line-height: 1.4;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Quicksand', sans-serif;
+    color: #f83030;
+    font-weight: normal;
+}
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
     padding: 0;
-    background-color: white;
-    width: 100%;
-    -webkit-box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.3);
-    -moz-box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.3);
-    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.3);
 }
 
-body{
-    background-color: whitesmoke;
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
 }
 
-form{
-    margin: 0;
-    padding: 0;
-}
-
+/*
 #red_line{
     background-color: #b50001;
     height: 2px;
     width: 100%;
     margin-bottom: 2px;
+}*/
+
+.wrapper {
+    width: 90%;
+    margin: 0 5%;
 }
 
-#search {
-    border-radius: 8px;
-    border: 1px solid whitesmoke;
-    background-color: whitesmoke;
-    width: calc(100% - 60px);
+html, body {
+    background-color: #ECF0F1;
+    height:100%;
 }
 
-.red {
-    color: #b50001;
+.header-container,
+.main aside {
+    background: #3498DB;
 }
 
 .card {
-    background-color: white;
-    -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.3);
-    -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.3);
-    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.3);
+    background: #fff;
+    -webkit-box-shadow: 0 2px 4px 0 rgba(153,153,153,.75);
+    -moz-box-shadow: 0 2px 4px 0 rgba(153,153,153,.75);
+    box-shadow: 0 2px 4px 0 rgba(153,153,153,.75);
+    -webkit-transition: height .4s,-webkit-box-shadow 1s linear;
+    -moz-transition: height .4s,-moz-box-shadow 1s linear;
+    -o-transition: height .4s,box-shadow 1s linear;
+    transition: height .4s,box-shadow 1s linear;
 }
+
+.card a {
+    color: #f83030;
+    text-decoration: none;
+    font-weight: bold;
+}
+.card .padded{
+    padding:20px;
+}
+
+.card .padded-top{
+    margin-top: 20px;
+}
+
+.game-image{
+    width: 100%; 
+    border-top-right-radius: 5px; 
+    border-top-left-radius: 5px;
+}
+
+#search{
+    border: 1px solid #75b9e7;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 36px;
+    background-color: #75b9e7;
+    box-shadow: none;
+    color: #fff;
+    border-radius: 8px;
+    padding: 2px;
+    width: calc(100% - 60px);
+}
+
+#search::-webkit-input-placeholder {color: #fff;}
+#search::-moz-placeholder {color: #fff;}
+#search:-ms-input-placeholder {color: #fff;}
+#search:-moz-placeholder {color: #fff;}
+
+#search:focus{
+    animation: change-background 1s ease;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #222;
+}
+
+#search:focus::-webkit-input-placeholder {color: #222;}
+#search:focus::-moz-placeholder {color: #222;}
+#search:focus:-ms-input-placeholder {color: #222;}
+#search:focus:-moz-placeholder {color: #222;}
+
+input[type="search"],
+input[type="password"],
+input[type="text"]{
+    background: #ECF0F1;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 0 20px;
+    height: 55px;
+    line-height: 55px;
+    font-size: 16px;
+    border: none;
+    display: block;
+    width: calc(100% - 40px);
+    margin: 0 auto;
+    margin-bottom: 20px;
+    box-shadow:inset 0px 1px 1px 0px rgba(0, 0, 0, 0.15);
+    /*
+    width: calc(100% - 30px);
+    background: #ECF0F1;
+    padding: 15px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    -webkit-font-smoothing: auto;
+    */
+}
+
+/* ==========================================================================
+Media Queries
+========================================================================== */
+
+@media only screen and (min-width: 480px) {
+
+    /* ====================
+    INTERMEDIATE: Menu
+    ==================== */
+
+    nav a {
+        float: left;
+        width: 27%;
+        margin: 0 1.7%;
+        padding: 15px 2%;
+    }
+
+    nav li:first-child a {
+        margin-left: 0;
+    }
+
+    nav li:last-child a {
+        margin-right: 0;
+    }
+
+    /* ========================
+    INTERMEDIATE: IE Fixes
+    ======================== */
+
+    nav ul li {
+        display: inline;
+    }
+
+    .oldie nav a {
+        margin: 0 0.7%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+
+    /* ====================
+    WIDE: CSS3 Effects
+    ==================== */
+
+    .header-container,
+    .main aside {
+        /*-webkit-box-shadow: 0 5px 10px #aaa;
+        -moz-box-shadow: 0 5px 10px #aaa;
+        box-shadow: 0 5px 10px #aaa;*/
+        -webkit-box-shadow: 0 2px 4px 0 rgba(153,153,153,.75);
+        -moz-box-shadow: 0 2px 4px 0 rgba(153,153,153,.75);
+        box-shadow: 0 2px 4px 0 rgba(153,153,153,.75);
+        /*-webkit-transition: height .4s,-webkit-box-shadow 1s linear;
+        -moz-transition: height .4s,-moz-box-shadow 1s linear;
+        -o-transition: height .4s,box-shadow 1s linear;
+        transition: height .4s,box-shadow 1s linear;*/
+    }
+
+    /* ============
+    WIDE: Menu
+    ============ */
+
+    .title {
+        float: left;
+    }
+
+    nav {
+        float: right;
+        width: 38%;
+        padding:5px 0;
+    }
+
+    /* ============
+    WIDE: Main
+    ============ */
+
+    .main article {
+        float: left;
+        width: 100%;
+    }
+
+    .main.with-aside article {
+        float: left;
+        width: 57%;
+    }
+
+    .main aside {
+        float: right;
+        width: 28%;
+    }
+}
+
+@media only screen and (min-width: 1140px) {
+
+    /* ===============
+    Maximal Width
+    =============== */
+
+    .wrapper {
+        width: 1026px; /* 1140px - 10% for margins */
+        margin: 0 auto;
+    }
+}
+
+/* ==========================================================================
+Helper classes
+========================================================================== */
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+
+
+/* Keyframes */
+@keyframes change-background {
+  0% {
+      border: 1px solid #75b9e7;
+      background-color: #75b9e7;
+      color: #fff;
+  }
+  100% {
+      background-color: #fff;
+      border: 1px solid #f83030;
+      color: #222;
+  }

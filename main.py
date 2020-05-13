@@ -1,6 +1,7 @@
 import os
 import datetime
 import pickle
+import collections
 import pandas as pd
 import networkx as nx
 from flask import Flask, session, request, jsonify, render_template, redirect
@@ -15,16 +16,19 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = "f84f6176aa4cb7fccac55381b1f9005d97a8f6bd"
 
 
+def get_css_hash():
+    """Get a Random Hash to Add to the CSS."""
+    return hash(datetime.datetime.now())
+
 def get_recommendations(G, game_id, n_recommendations = 5, return_weights = False):
     root_node = "game_" + str(game_id)
     counts = dict()
     for n in G.neighbors(root_node):
-        #print(n)
         if n == "popular":
             weight = 1
         elif "category" in n:
             weight = 2
-        elif "integrates_with_"  in n:#+ str(game_id) in n:
+        elif "integrates_with_"  in n:
             weight = 20
         elif "year" in n:
             weight = 1
@@ -78,25 +82,48 @@ def get_connected_games(G, node_id):
 def home():
     # Start up the user session view history
     session["history"] = session.get("history", list())
-    top_recommendations = most_popular[0:5]
+    css_hash = get_css_hash()
+    top_recommendations = most_popular[0:10]
     has_history = (len(session["history"]) > 0)
-    return render_template("home.html", top_recommendations = top_recommendations, attributes = attributes, has_history = has_history)
+    return render_template("home.html", css_hash = css_hash, top_recommendations = top_recommendations, attributes = attributes, has_history = has_history)
 
 
 @app.route("/details/<game_id>")
 def details(game_id):
     add_to_front_of_history(game_id)
+    css_hash = get_css_hash()
     #return jsonify(session["history"])
     game_id = int(game_id)
     game = attributes[game_id]
     recommendations = get_recommendations(G, game_id, 10)
-    return render_template("details.html", game=game, recommendations = recommendations, attributes = attributes)
+    return render_template("details.html", css_hash=css_hash, game=game, recommendations = recommendations, attributes = attributes)
 
 
 @app.route("/clear-history")
 def clear_history():
     session["history"] = list()
     return redirect("/")
+
+@app.route("/search", methods = ["GET", "POST"])
+def search():
+    if request.method == "GET":
+        search_terms = request.args.get("search")
+    else:
+        search_terms = request.data
+
+    search_terms = search_terms.split(" ")
+
+    search_results = dict()
+    for game_id, row in attributes.items():
+        game_name = row["name"]
+        search_in = game_name.lower()
+        for search_for in search_terms:
+            if search_for.lower() in search_in:
+                search_results[game_name] = game_id
+    # Sort by name
+    search_results = collections.OrderedDict(sorted(search_results.items()))
+
+    return render_template("search.html", search_results = search_results)
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,0 +1,5 @@
+<ul>
+{% for game in search_results.items() %}
+<li><a href="/details/{{game[1]}}">{{game[0] | safe}}</a></li>
+{% endfor %}
+</ul>

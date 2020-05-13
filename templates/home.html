@@ -10,11 +10,12 @@
     <h2>Top Recommendations</h2>
     <div class="top_recommendations">
       {% for game_id in top_recommendations %}
-      <div>
-        <a href="/details/{{game_id}}">
-          <b>{{attributes[game_id]["name"]}}</b><br/>
-          <img src="{{attributes[game_id]['thumbnail']}}"/>
-        </a>
+      <div class="card" style="margin: 5px; border-radius: 5px;">
+        <a href="/details/{{game_id}}"><img src="{{attributes[game_id]['image']}}" class="game-image" /></a>
+        <div class="card-text">
+          <a href="/details/{{game_id}}"  style="text-align: center; display: block;">{{attributes[game_id]["name"]}}</a>
+          <span class="likes">{{attributes[game_id]["likes"]}} Likes</span>
+        </div>
       </div>
       {% endfor %}
     </div>
@@ -24,11 +25,13 @@
     <div class="history">
       {% for game_id in session["history"][0:5] %}
       {% set game_id = int(game_id) | int %}
-      <div style="float: left;">
-        <a href="/details/{{game_id}}">
-          <b>{{attributes[game_id]["name"]}}</b><br/>
-          <img src="{{attributes[game_id]['thumbnail']}}"/>
-        </a>
+      <div style="float: left; width:20%;">
+        <div class="card" style="margin: 5px; border-radius: 5px;">
+          <a href="/details/{{game_id}}"><img src="{{attributes[game_id]['image']}}" class="game-image" /></a>
+          <div class="card-text">
+            <a href="/details/{{game_id}}"  style="text-align: center; display: block;">{{attributes[game_id]["name"]}}</a>
+          </div>
+        </div>
       </div>
       {% endfor %}
     </div>
@@ -36,7 +39,7 @@
     <script type="text/javascript">
       $(document).ready(function(){
         $('.top_recommendations').slick({
-          slidesToShow: 1,
+          slidesToShow: 5,
           slidesToScroll: 1,
           autoplay: true,
           autoplaySpeed: 5000,

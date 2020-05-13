@@ -8,12 +8,14 @@
     <h2>You might also like...</h2>
     <div class="recommendations">
     {% for recommendation in recommendations %}
-      <div class="recommendation">
-        <a href="/details/{{recommendation}}">
-          {{attributes[recommendation]['name']}}<br/>
-          <img src="{{attributes[recommendation]['thumbnail']}}" align="left"/>
-        </a>
+    <div style="float: left; width:20%;">
+      <div class="card" style="margin: 5px; border-radius: 5px;">
+        <a href="/details/{{recommendation}}"><img src="{{attributes[recommendation]['image']}}" class="game-image" /></a>
+        <div class="card-text">
+          <a href="/details/{{recommendation}}"  style="text-align: center; display: block;">{{attributes[recommendation]["name"]}}</a>
+        </div>
       </div>
+    </div>
     {% endfor %}
     </div>
   </section>
