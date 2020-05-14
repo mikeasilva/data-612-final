@@ -56,6 +56,7 @@ video {
 html, body {
     background-color: #ECF0F1;
     height:100%;
+    z-index: 1;
 }
 
 .header-container,
@@ -63,6 +64,18 @@ html, body {
     background: #3498DB;
 }
 
+#search-results {
+    z-index: 2;
+    max-height: 200px;
+    overflow-y: scroll;
+}
+#search-results a {
+    line-height: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+#search-results ,
 .card {
     background: #fff;
     -webkit-box-shadow: 0 2px 4px 0 rgba(153,153,153,.75);
@@ -74,6 +87,7 @@ html, body {
     transition: height .4s,box-shadow 1s linear;
 }
 
+#search-results a,
 .card a {
     color: #f83030;
     text-decoration: none;
@@ -289,6 +303,6 @@ Helper classes
   }
   100% {
       background-color: #fff;
-      border: 1px solid #f83030;
+      border: 1px solid #fff;
       color: #222;
   }

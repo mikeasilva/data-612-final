@@ -104,12 +104,18 @@ def clear_history():
     session["history"] = list()
     return redirect("/")
 
+@app.route("/img/<img_file>")
+def img(img_file):
+    #196 px
+    game_id = img_file.split("\\.")[0]
+    return str(game_id)
+
 @app.route("/search", methods = ["GET", "POST"])
 def search():
     if request.method == "GET":
         search_terms = request.args.get("search")
     else:
-        search_terms = request.data
+        search_terms = request.form["search"]
 
     search_terms = search_terms.split(" ")
 

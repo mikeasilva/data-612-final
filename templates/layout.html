@@ -13,11 +13,12 @@
   </head>
   <body>
     <header class="header-container">
-      <form class="wrapper">
+      <form class="wrapper" id="search-form" action="/search">
         <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='img/red_dice.png') }}" height="42"/></a>
-        <input id="search" placeholder="I'm looking for..." autocomplete="off"/>
+        <input name="search" id="search" placeholder="I'm looking for..." autocomplete="off"/>
       </form>
     </header>
+    <div id="search-results"></div>
     <div class="main-container">
       <main class="main wrapper clearfix">
         <div class="section group">
@@ -26,5 +27,38 @@
         </div>
       </main>
     </div>
+    <script>
+
+      function search(terms){
+        var form = $("#search-form");
+        var url = form.attr("action");
+        // AJAX Request
+        var posting = $.post(url, {search: terms});
+        posting.done(function(content){
+          var rect = $('#search').position();
+          var left = rect["left"];
+          var top = rect["bottom"] + 2;
+          var width = $('#search').width();
+          $('#search-results').css({top: top, left: left, position:'absolute', width: width}).empty().append(content).show();
+        });
+      }
+
+      $("#search").keyup(function() {
+        var terms = $("#search").val();
+        if (terms.length > 2){
+          search(terms);
+        } else {
+          $('#search-results').empty().hide();
+        }
+      });
+
+      $("#search-form").submit(function( event ) {
+        // Stop form from submitting normally
+        event.preventDefault();
+        var terms =  $("#search").val();
+        // Search
+        search(terms);
+      });
+    </script>
   </body>
 </html>

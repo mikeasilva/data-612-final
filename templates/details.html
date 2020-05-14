@@ -2,7 +2,13 @@
 {% block content %}
   <div class="details">
     <h1>{{game.name}}</h1>
-    <p><img src="{{game.thumbnail}}" align="left"/> {{game.description | safe}}</p>
+    <p><img src="{{game.thumbnail}}" align="left" style="padding-right: 10px;"/> {{game.description | safe}}</p>
+    <b class="likes">{{game.likes}} Likes</b>
+    <p>
+      {% for category in game.category %}
+      <span class="category">{{category}}</span>&nbsp;
+      {% endfor %}
+    </p>
   </div>
   <section class="you_might_also_like">
     <h2>You might also like...</h2>
