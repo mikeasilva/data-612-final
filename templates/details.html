@@ -14,8 +14,8 @@
     <h2>You might also like...</h2>
     <div class="recommendations">
     {% for recommendation in recommendations %}
-    <div style="float: left; width:20%;">
-      <div class="card" style="margin: 5px; border-radius: 5px;">
+    <div class="fifths">
+      <div class="card">
         <a href="/details/{{recommendation}}"><img src="{{attributes[recommendation]['image']}}" class="game-image" /></a>
         <div class="card-text">
           <a href="/details/{{recommendation}}"  style="text-align: center; display: block;">{{attributes[recommendation]["name"]}}</a>

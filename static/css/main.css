@@ -1,9 +1,12 @@
-html {
+html, body {
     color: #222;
     font-size: 1em;
     line-height: 1.4;
     font-family: 'Quicksand', sans-serif;
     font-weight: 300;
+    background-color: #ECF0F1;
+    height:100%;
+    z-index: 1;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -22,45 +25,16 @@ h1, h2, h3, h4, h5, h6 {
     text-shadow: none;
 }
 
-hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 1em 0;
-    padding: 0;
-}
-
-audio,
-canvas,
-iframe,
-img,
-svg,
-video {
+img {
     vertical-align: middle;
 }
-
-/*
-#red_line{
-    background-color: #b50001;
-    height: 2px;
-    width: 100%;
-    margin-bottom: 2px;
-}*/
 
 .wrapper {
     width: 90%;
     margin: 0 5%;
 }
 
-html, body {
-    background-color: #ECF0F1;
-    height:100%;
-    z-index: 1;
-}
-
-.header-container,
-.main aside {
+.header-container {
     background: #3498DB;
 }
 
@@ -87,7 +61,17 @@ html, body {
     transition: height .4s,box-shadow 1s linear;
 }
 
-.category{
+.card {
+    margin: 5px; 
+    border-radius: 5px;
+}
+
+.fifths {
+    float: left; 
+    width:20%;
+}
+
+.category {
     background-color: #ddd;
   border: none;
   color: black;
@@ -106,21 +90,14 @@ html, body {
     text-decoration: none;
     font-weight: bold;
 }
-.card .padded{
-    padding:20px;
-}
 
-.card .padded-top{
-    margin-top: 20px;
-}
-
-.game-image{
+.game-image {
     width: 100%; 
     border-top-right-radius: 5px; 
     border-top-left-radius: 5px;
 }
 
-#search{
+#search {
     border: 1px solid #75b9e7;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -138,7 +115,7 @@ html, body {
 #search:-ms-input-placeholder {color: #fff;}
 #search:-moz-placeholder {color: #fff;}
 
-#search:focus{
+#search:focus {
     animation: change-background 1s ease;
     background-color: #fff;
     border: 1px solid #ccc;
@@ -152,7 +129,7 @@ html, body {
 
 input[type="search"],
 input[type="password"],
-input[type="text"]{
+input[type="text"] {
     background: #ECF0F1;
     text-decoration: none;
     border-radius: 5px;
@@ -166,116 +143,21 @@ input[type="text"]{
     margin: 0 auto;
     margin-bottom: 20px;
     box-shadow:inset 0px 1px 1px 0px rgba(0, 0, 0, 0.15);
-    /*
-    width: calc(100% - 30px);
-    background: #ECF0F1;
-    padding: 15px;
-    border: none;
-    outline: none;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    -webkit-font-smoothing: auto;
-    */
 }
 
 /* ==========================================================================
 Media Queries
 ========================================================================== */
 
-@media only screen and (min-width: 480px) {
-
-    /* ====================
-    INTERMEDIATE: Menu
-    ==================== */
-
-    nav a {
-        float: left;
-        width: 27%;
-        margin: 0 1.7%;
-        padding: 15px 2%;
-    }
-
-    nav li:first-child a {
-        margin-left: 0;
-    }
-
-    nav li:last-child a {
-        margin-right: 0;
-    }
-
-    /* ========================
-    INTERMEDIATE: IE Fixes
-    ======================== */
-
-    nav ul li {
-        display: inline;
-    }
-
-    .oldie nav a {
-        margin: 0 0.7%;
-    }
-}
-
 @media only screen and (min-width: 768px) {
-
-    /* ====================
-    WIDE: CSS3 Effects
-    ==================== */
-
-    .header-container,
-    .main aside {
-        /*-webkit-box-shadow: 0 5px 10px #aaa;
-        -moz-box-shadow: 0 5px 10px #aaa;
-        box-shadow: 0 5px 10px #aaa;*/
+    .header-container {
         -webkit-box-shadow: 0 2px 4px 0 rgba(153,153,153,.75);
         -moz-box-shadow: 0 2px 4px 0 rgba(153,153,153,.75);
         box-shadow: 0 2px 4px 0 rgba(153,153,153,.75);
-        /*-webkit-transition: height .4s,-webkit-box-shadow 1s linear;
-        -moz-transition: height .4s,-moz-box-shadow 1s linear;
-        -o-transition: height .4s,box-shadow 1s linear;
-        transition: height .4s,box-shadow 1s linear;*/
-    }
-
-    /* ============
-    WIDE: Menu
-    ============ */
-
-    .title {
-        float: left;
-    }
-
-    nav {
-        float: right;
-        width: 38%;
-        padding:5px 0;
-    }
-
-    /* ============
-    WIDE: Main
-    ============ */
-
-    .main article {
-        float: left;
-        width: 100%;
-    }
-
-    .main.with-aside article {
-        float: left;
-        width: 57%;
-    }
-
-    .main aside {
-        float: right;
-        width: 28%;
     }
 }
 
 @media only screen and (min-width: 1140px) {
-
-    /* ===============
-    Maximal Width
-    =============== */
-
     .wrapper {
         width: 1026px; /* 1140px - 10% for margins */
         margin: 0 auto;
@@ -305,8 +187,6 @@ Helper classes
     *zoom: 1;
 }
 
-
-
 /* Keyframes */
 @keyframes change-background {
   0% {
@@ -319,3 +199,4 @@ Helper classes
       border: 1px solid #fff;
       color: #222;
   }
+}

@@ -10,7 +10,7 @@
     <h2>Top Recommendations</h2>
     <div class="top_recommendations">
       {% for game_id in top_recommendations %}
-      <div class="card" style="margin: 5px; border-radius: 5px;">
+      <div class="card">
         <a href="/details/{{game_id}}"><img src="{{attributes[game_id]['image']}}" class="game-image" /></a>
         <div class="card-text">
           <a href="/details/{{game_id}}"  style="text-align: center; display: block;">{{attributes[game_id]["name"]}}</a>
@@ -26,8 +26,8 @@
     <div class="history">
       {% for game_id in session["history"][0:5] %}
       {% set game_id = int(game_id) | int %}
-      <div style="float: left; width:20%;">
-        <div class="card" style="margin: 5px; border-radius: 5px;">
+      <div class="fifths">
+        <div class="card">
           <a href="/details/{{game_id}}"><img src="{{attributes[game_id]['image']}}" class="game-image" /></a>
           <div class="card-text">
             <a href="/details/{{game_id}}"  style="text-align: center; display: block;">{{attributes[game_id]["name"]}}</a>
@@ -43,7 +43,7 @@
     <h2>{{category}}</h2>
     <div class="slick">
       {% for game_id in homepage_categories_data[category] %}
-        <div class="card" style="margin: 5px; border-radius: 5px;">
+        <div class="card">
           <a href="/details/{{game_id}}"><img src="{{attributes[game_id]['image']}}" class="game-image" /></a>
           <div class="card-text">
             <a href="/details/{{game_id}}"  style="text-align: center; display: block;">{{attributes[game_id]["name"]}}</a>
