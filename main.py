@@ -8,6 +8,7 @@ from flask import Flask, session, request, jsonify, render_template, redirect
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
+# Load saved objects
 G = nx.read_gpickle("G.pickle")
 attributes = pickle.load(open("attributes.pickle", "rb"))
 most_popular = pickle.load(open("most_popular.pickle", "rb"))
@@ -28,7 +29,6 @@ def add_to_front_of_history(game_id):
         history.remove(game_id)
     history.insert(0, game_id)
     session["history"] = history
-
 
 
 def get_css_hash():
@@ -69,9 +69,9 @@ def get_homepage_categories(G, top_recommendations, n_categories = 7, n_games_pe
     seen = set(top_recommendations)            
 
     if len(session["history"]) > 0:
-        # Gather the categories from games in the history
+        # Gather the categories from very recent games in the history
         counts = dict()
-        for game_id in session["history"][0:10]:
+        for game_id in session["history"][0:1]:
             game_id = int(game_id)
             # Provide novelty: Ensure recent history is not recommended
             seen.add(game_id)
@@ -102,6 +102,7 @@ def get_homepage_categories(G, top_recommendations, n_categories = 7, n_games_pe
                 add_to_list = False
 
     return(homepage_categories)
+
 
 def get_recommendations(G, game_id, n_recommendations = 10):
     """Creates recommendations for a specific game
@@ -134,6 +135,7 @@ def get_recommendations(G, game_id, n_recommendations = 10):
 
     recommendations = sort_counts(counts, n_recommendations)
     return recommendations
+
 
 def get_top_recommendations(G, n_recommendations = 10):
     """Creates the top recommendations found on the home page
