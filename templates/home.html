@@ -21,6 +21,7 @@
     </div>
 
     {% if has_history %}
+    <div class="clearfix"></div>
     <h2>You Recently Viewed</h2>
     <div class="history">
       {% for game_id in session["history"][0:5] %}
@@ -36,6 +37,21 @@
       {% endfor %}
     </div>
     {% endif %}
+
+    {% for category in homepage_categories %}
+    <div class="clearfix"></div>
+    <h2>{{category}}</h2>
+    <div class="slick">
+      {% for game_id in homepage_categories_data[category] %}
+        <div class="card" style="margin: 5px; border-radius: 5px;">
+          <a href="/details/{{game_id}}"><img src="{{attributes[game_id]['image']}}" class="game-image" /></a>
+          <div class="card-text">
+            <a href="/details/{{game_id}}"  style="text-align: center; display: block;">{{attributes[game_id]["name"]}}</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
     <script type="text/javascript">
       $(document).ready(function(){
         $('.top_recommendations').slick({
@@ -43,6 +59,12 @@
           slidesToScroll: 1,
           autoplay: true,
           autoplaySpeed: 5000,
+        });
+
+        $('.slick').slick({
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          infinite: true,
         });
       });
     </script>
