@@ -54,7 +54,7 @@ def get_games_by_category(G, category):
     return(list_of_games)
 
 
-def get_homepage_categories(G, top_recommendations, n_categories = 7, n_games_per_category = 5):
+def get_homepage_categories(G, top_recommendations, n_categories = 7, n_games_per_category = 10):
     """Select N Categories to Highlight
     Parameters:
         G: NetworkX Graph
